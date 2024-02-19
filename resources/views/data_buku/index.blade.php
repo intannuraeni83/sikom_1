@@ -23,6 +23,7 @@
 								<div class="d-flex justify-content-between">
 									<a href="{{ route('buku.create') }}" class="btn btn-primary">TAMBAH DATA</a>
 								</div>
+								@include('_component.pesan')
 							</div>
 							<div class="card-body mt-3">
 								<div class="table-responsive">
@@ -40,11 +41,14 @@
 										<tbody>
                                         @foreach ($buku as $dt)
 											<tr>
-												<th scope="row">1</th>
+												<th scope="row">{{$loop->iteration}}</th>
 												<td>{{ $dt->judul }}</td>
 												<td>{{ $dt->penulis }}</td>
 												<td>{{ $dt->penerbit }}</td>
                                                 <td>{{ $dt->tahun_terbit }}</td>
+												<td>
+													<a href="{{ route('buku.edit', $dt->id) }}" class="btn btn-sm btn-warning">Edit</a>
+												</td>
 											</tr>
                                             @endforeach
 										</tbody>
