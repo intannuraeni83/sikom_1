@@ -144,7 +144,7 @@ class BukuController extends Controller
         return back()->with('succes','Data berhasil di hapus');
     }
 
-    
+    public function export_pdf(Request $request)
     {
         $data = Buku::orderBy('judul','asc');
         $data = $data->get();
