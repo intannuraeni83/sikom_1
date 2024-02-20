@@ -6,6 +6,8 @@ use App\Models\Buku;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\pdf;
 
+use Maatwebsite\Excel\Facades\Excel;
+
 class BukuController extends Controller
 {
     /**
@@ -142,7 +144,7 @@ class BukuController extends Controller
         return back()->with('succes','Data berhasil di hapus');
     }
 
-    public function export_pdf()
+    
     {
         $data = Buku::orderBy('judul','asc');
         $data = $data->get();
@@ -155,5 +157,20 @@ class BukuController extends Controller
         $filename = date('ymdhis') . 'data_buku';
         // download the pdf file
         return $pdf->download($filename.'.pdf');
+    }
+    public function export_excel(Request $request)
+    {
+        //QUERY
+        $data = Buku::select('*');
+        $data = $data->get();
+
+        // pass parameters to the export class
+        $export = new DataBukuExportView($data);
+
+        //SET FILE NAME
+        $filename = date('YmdHis') . 'data_buku';
+
+        //Download the Excel file
+        return Excel::download($export, $filename. '.xlsx');
     }
 }
