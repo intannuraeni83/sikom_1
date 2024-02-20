@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\pdf;
 
 class BukuController extends Controller
 {
@@ -34,6 +35,7 @@ class BukuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
     //    dd($request);
@@ -48,7 +50,7 @@ class BukuController extends Controller
             'judul.required' => 'judul wajib diisi',
             'penulis.required' => 'penulis wajib diisi',
             'penerbit.required' => 'penerbit wajib diisi',
-            'tahun_tebit.required' => 'tahun tebit wajib diisi',
+            'tahun_terbit.required' => 'tahun terbit wajib diisi',
         ]
     );
 
@@ -62,7 +64,9 @@ class BukuController extends Controller
     Buku::create($data);
     return redirect()->route('buku.index')->with('success', 'Data Berhasil di simpan');
 
+
 }
+
 
     /**
      * Display the specified resource.
@@ -84,7 +88,8 @@ class BukuController extends Controller
     public function edit($id)
     {
         $dt = Buku::find($id);
-        return view('data_buku.form_edit', compact('dt'));
+        return view('data_buku.form_edit',compact('dt'));
+
     }
 
     /**
@@ -107,7 +112,7 @@ class BukuController extends Controller
                 'judul.required' => 'judul wajib diisi',
                 'penulis.required' => 'penulis wajib diisi',
                 'penerbit.required' => 'penerbit wajib diisi',
-                'tahun_tebit.required' => 'tahun tebit wajib diisi',
+                'tahun_terbit.required' => 'tahun terbit wajib diisi',
             ]
         );
     
@@ -118,10 +123,12 @@ class BukuController extends Controller
             'tahun_terbit' => $request->tahun_terbit,
         ];
     
-        Buku::where('id', $id)->update($data);
+         Buku::where('id', $id)->update($data);
         return redirect()->route('buku.index')->with('success', 'Data Berhasil di edit');
     
+    
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -132,6 +139,21 @@ class BukuController extends Controller
     public function destroy($id)
     {
         Buku::find($id)->delete();
-        return back()->with('succes', 'Data Berhasil di hapus');
+        return back()->with('succes','Data berhasil di hapus');
+    }
+
+    public function export_pdf()
+    {
+        $data = Buku::orderBy('judul','asc');
+        $data = $data->get();
+
+        // pass parameters to the export view
+        $pdf = PDF::loadview('data_buku.exportPdf', ['data'=>$data]);
+        $pdf->setpaper('a4', 'portait');
+        $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+        // SET FILE NAME
+        $filename = date('ymdhis') . 'data_buku';
+        // download the pdf file
+        return $pdf->download($filename.'.pdf');
     }
 }

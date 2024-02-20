@@ -20,7 +20,10 @@ use App\Http\Controllers\LoginController;
 // });
 
 Route::get('/',[LoginController::class,'login'])->name('login');
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 Route::post('/auth',[LoginController::class, 'auth'])->name('auth');
 
+
 //ROUTE BARU
-Route::resource('buku', BukuController::class);
+Route::resource('buku', BukuController::class)->middleware('auth');
+Route::get('export_pdf_buku' ,[BukuController::class, 'export_pdf'])->name('export_pdf_buku');

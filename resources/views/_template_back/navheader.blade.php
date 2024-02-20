@@ -65,11 +65,7 @@
 												<div class="main-img-user"><img alt="" src="{{ asset ('assets')}}/img/faces/18.jpg"></div>
 												<h6>INTAN NUR'AENI</h6><span>Administrator</span>
 											</div>
-											<a class="dropdown-item" href="profile.html"><i class="far fa-user"></i> My Profile</a>
-											<a class="dropdown-item" href="profile.html"><i class="far fa-edit"></i> Edit Profile</a>
-											<a class="dropdown-item" href="profile.html"><i class="far fa-clock"></i> Activity Logs</a>
-											<a class="dropdown-item" href="profile.html"><i class="fas fa-sliders-h"></i> Account Settings</a>
-											<a class="dropdown-item" href="signup.html"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+											<a class="dropdown-item" href="{{route('logout') }}"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
 										</div>
 									</div>
 									<div class="dropdown main-header-message right-toggle">
