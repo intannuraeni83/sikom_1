@@ -58,12 +58,12 @@
 
 									</div>
 									<div class="dropdown main-profile-menu nav nav-item nav-link">
-										<a class="profile-user d-flex" href=""><img src="{{ asset ('assets')}}/img/faces/6.jpg" alt="user-img" class="rounded-circle mCS_img_loaded"><span></span></a>
+										<a class="profile-user d-flex" href=""><img src="{{ asset ('assets')}}/img/faces/18.jpg" alt="user-img" class="rounded-circle mCS_img_loaded"><span></span></a>
 
 										<div class="dropdown-menu">
 											<div class="main-header-profile header-img">
-												<div class="main-img-user"><img alt="" src="{{ asset ('assets')}}/img/faces/6.jpg"></div>
-												<h6>Petey Cruiser</h6><span>Premium Member</span>
+												<div class="main-img-user"><img alt="" src="{{ asset ('assets')}}/img/faces/18.jpg"></div>
+												<h6>INTAN NUR'AENI</h6><span>Administrator</span>
 											</div>
 											<a class="dropdown-item" href="profile.html"><i class="far fa-user"></i> My Profile</a>
 											<a class="dropdown-item" href="profile.html"><i class="far fa-edit"></i> Edit Profile</a>
