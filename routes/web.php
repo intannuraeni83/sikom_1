@@ -20,6 +20,7 @@ use App\Http\Controllers\LoginController;
 // });
 
 Route::get('/',[LoginController::class,'login'])->name('login');
+Route::post('/auth',[LoginController::class, 'auth'])->name('auth');
 
 //ROUTE BARU
 Route::resource('buku', BukuController::class);
