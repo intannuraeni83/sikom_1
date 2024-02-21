@@ -25,6 +25,7 @@
 									<a href="{{ route('buku.create') }}" class="btn btn-primary">TAMBAH DATA</a>
 									<a href="{{ route('export_excel_buku') }}" class="btn btn-success">EXCEL PDF</a>
 									<a href="{{ route('export_pdf_buku') }}" class="btn btn-danger">EXPORT PDF</a>
+									<a class="modal-effect btn btn-dark" data-bs-effect="effect-rotate-bottom" data-bs-toggle="modal" href="#modaldemo8">IMPORT EXCEL</a>
 								</div>
 								@include('_component.pesan')
 							</div>
@@ -66,4 +67,5 @@
                 </div>
 					<!--/div-->
 
+	@include('data_buku.modal_import')
 @endsection
