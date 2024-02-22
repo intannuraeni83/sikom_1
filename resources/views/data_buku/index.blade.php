@@ -24,7 +24,11 @@
 									<--ROUTE CREATE BUKU-->
 									<a href="{{ route('buku.create') }}" class="btn btn-primary">TAMBAH DATA</a>
 									<a href="{{ route('export_excel_buku') }}" class="btn btn-success">EXCEL PDF</a>
+									@if (auth()->user()->role == 'petugas')
 									<a href="{{ route('export_pdf_buku') }}" class="btn btn-danger">EXPORT PDF</a>
+									@elseif(auth()->user()->role == 'administator')
+									<a href="{{ route('export_pdf_buku') }}" class="btn btn-danger">EXPORT PDF</a>
+									@endif
 									<a class="modal-effect btn btn-dark" data-bs-effect="effect-rotate-bottom" data-bs-toggle="modal" href="#modaldemo8">IMPORT EXCEL</a>
 								</div>
 								@include('_component.pesan')
