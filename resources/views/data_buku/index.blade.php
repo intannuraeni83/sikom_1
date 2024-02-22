@@ -28,6 +28,8 @@
 									<a href="{{ route('export_pdf_buku') }}" class="btn btn-danger">EXPORT PDF</a>
 									@elseif(auth()->user()->role == 'administator')
 									<a href="{{ route('export_pdf_buku') }}" class="btn btn-danger">EXPORT PDF</a>
+									@else
+									
 									@endif
 									<a class="modal-effect btn btn-dark" data-bs-effect="effect-rotate-bottom" data-bs-toggle="modal" href="#modaldemo8">IMPORT EXCEL</a>
 								</div>
