@@ -3,6 +3,7 @@
 use App\Http\Controllers\BukuController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PeminjamanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,6 @@ Route::resource('buku', BukuController::class)->middleware('auth');
 Route::get('export_pdf_buku' ,[BukuController::class, 'export_pdf'])->name('export_pdf_buku')->middleware('role:petugas,administrator');
 Route::get('export_excel_buku' ,[BukuController::class, 'export_excel'])->name('export_excel_buku');
 Route::post('import_excel_buku' ,[BukuController::class, 'import_excel'])->name('import_excel_buku');
+
+//ROUTE CRUD PEMINJAMAN
+Route::resource('peminjaman', PeminjamanController::class);

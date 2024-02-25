@@ -4,7 +4,7 @@
    <!-- breadcrumb -->
    <div class="breadcrumb-header justify-content-between">
 					<div>
-						<h4 class="content-title mb-2">Data Buku!</h4>
+						<h4 class="content-title mb-2">Data Peminjaman!</h4>
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a   href="javascript:void(0);">Tables</a></li>
@@ -21,16 +21,14 @@
 						<div class="card">
 							<div class="card-header pb-0">
 								<div class="d-flex my-auto btn-list justify-content-end">
-									<--ROUTE CREATE BUKU-->
-									<a href="{{ route('buku.create') }}" class="btn btn-primary">TAMBAH DATA</a>
+									<--ROUTE CREATE PEMINJAMAN-->
+									<a href="{{ route('peminjaman.create') }}" class="btn btn-primary">TAMBAH DATA</a>
 									<a href="{{ route('export_excel_buku') }}" class="btn btn-success">EXCEL PDF</a>
-									@if (auth()->user()->role == 'petugas')
-									<a href="{{ route('export_pdf_buku') }}" class="btn btn-danger">EXPORT PDF</a>
-									@elseif(auth()->user()->role == 'administator')
-									<a href="{{ route('export_pdf_buku') }}" class="btn btn-danger">EXPORT PDF</a>
-									@else
 									
-									@endif
+									<a href="{{ route('export_pdf_buku') }}" class="btn btn-danger">EXPORT PDF</a>
+									
+									<a href="{{ route('export_pdf_buku') }}" class="btn btn-danger">EXPORT PDF</a>
+									
 									<a class="modal-effect btn btn-dark" data-bs-effect="effect-rotate-bottom" data-bs-toggle="modal" href="#modaldemo8">IMPORT EXCEL</a>
 								</div>
 								@include('_component.pesan')
@@ -41,21 +39,23 @@
 										<thead>
 											<tr>
 												<th>No</th>
-												<th>Judul</th>
-												<th>Penulis</th>
-												<th>Penerbit</th>
-                                                <th>Tahun Terbit</th>
+												<th>User</th>
+												<th>Buku</th>
+												<th>Tanggal Peminjaman</th>
+                                                <th>Tanggal Pengembalian</th>
+                                                <th>Status</th>
                                                 <th>Action</th>
 											</tr>
 										</thead>
 										<tbody>
-                                        @foreach ($buku as $dt)
+                                        @foreach ($data as $dt)
 											<tr>
 												<th scope="row">{{$loop->iteration}}</th>
-												<td>{{ $dt->judul }}</td>
-												<td>{{ $dt->penulis }}</td>
-												<td>{{ $dt->penerbit }}</td>
-                                                <td>{{ $dt->tahun_terbit }}</td>
+												<td>{{ $dt->user->username }}</td>
+												<td>{{ $dt->buku->judul }}</td>
+												<td>{{ $dt->tanggal_peminjaman }}</td>
+                                                <td>{{ $dt->tanggal_pengembalian }}</td>
+                                                <td>{{ $dt->status_peminjaman }}</td>
 												<td>
 													<a href="{{ route('buku.edit', $dt->id) }}" class="btn btn-sm btn-warning">Edit</a>
 													<form onsubmit="return confirm('Apakah anda yakin ingin hapus data ini?')" action=" {{ route('buku.destroy',$dt->id) }}" method="post" class="d-inline">

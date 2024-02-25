@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class peminjaman extends Model
 {
     use HasFactory;
+    protected $table = "peminjaman";
     protected $guarded = ['id']; //MENGATUR HANYA COLOMN ID YANG TIDAK BOLEH DI ISI
     //RELASI DARI MODEL USER KE PEMINJAMAN
     public function user() 
